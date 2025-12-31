@@ -14,8 +14,6 @@ type ComputedRow = {
   recAction: string;
 };
 
-type StatRule = "STRICT_ALL_GOOD" | "MAJORITY_GOOD" | "ANY_BAD_MAKES_BAD";
-
 function parsePercent(value: unknown): number | null {
   if (value == null) return null;
   const s = String(value).trim();
@@ -77,19 +75,6 @@ function formatPct(n: number): string {
   return `${n.toFixed(1)}%`;
 }
 
-function selectStyle(): React.CSSProperties {
-  return {
-    border: "1px solid rgba(255,255,255,0.18)",
-    background: "rgba(255,255,255,0.05)",
-    color: "rgba(255,255,255,0.92)",
-    borderRadius: 10,
-    padding: "7px 10px",
-    fontWeight: 800,
-    fontSize: 13,
-    outline: "none",
-  };
-}
-
 export default function App() {
   const [rawRows, setRawRows] = useState<Row[]>([]);
   const [filename, setFilename] = useState<string>("");
@@ -99,7 +84,6 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [sortMode, setSortMode] = useState<"MOST_BAD" | "A_Z">("MOST_BAD");
 
-  const [statRule, setStatRule] = useState<StatRule>("STRICT_ALL_GOOD");
 
   const [filters, setFilters] = useState<Record<string, "ALL" | "GOOD" | "BAD">>(() => {
     const init: Record<string, "ALL" | "GOOD" | "BAD"> = {};
@@ -169,16 +153,6 @@ export default function App() {
 
     const withData = sectionStats.filter((x) => x.rows.length > 0);
     let goodStats = 0;
-    for (const x of withData) {
-      const ratio = x.rows.length ? x.good / x.rows.length : 0;
-      const isGood =
-        statRule === "STRICT_ALL_GOOD"
-          ? x.bad === 0
-          : statRule === "ANY_BAD_MAKES_BAD"
-            ? x.bad === 0
-            : ratio >= 0.5;
-      if (isGood) goodStats += 1;
-    }
     const totalStats = withData.length;
     const badStats = totalStats - goodStats;
     const pctGoodStats = totalStats ? (goodStats / totalStats) * 100 : 0;
@@ -195,7 +169,7 @@ export default function App() {
       badStats,
       pctGoodStats,
     };
-  }, [sectionStats, statRule]);
+  }, [sectionStats]);
 
   const visibleSections = useMemo(() => {
     const q = query.trim().toLowerCase();
