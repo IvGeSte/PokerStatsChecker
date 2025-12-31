@@ -230,7 +230,7 @@ export default function App() {
   return (
     <div style={{ maxWidth: 1100, margin: "0 auto", padding: 16, textAlign: "left" }}>
       <div
-        style={{
+        style={{  
           padding: 14,
           borderRadius: 14,
           border: "1px solid rgba(255,255,255,0.12)",
