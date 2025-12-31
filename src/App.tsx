@@ -3,6 +3,7 @@ import Papa from "papaparse";
 import "./App.css";
 import { SECTIONS } from "./sections";
 
+
 type Row = Record<string, string>;
 type ResultType = "LOW" | "GOOD" | "HIGH";
 type ComputedRow = {
