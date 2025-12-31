@@ -80,10 +80,10 @@ export default function App() {
   const [rawRows, setRawRows] = useState<Row[]>([]);
   const [filename, setFilename] = useState<string>("");
 
-  const [globalRowFilter, setGlobalRowFilter] = useState<"ALL" | "GOOD" | "BAD">("ALL");
-  const [sectionScope, setSectionScope] = useState<"ALL" | "WITH_BAD" | "WITH_DATA">("ALL");
-  const [query, setQuery] = useState("");
-  const [sortMode, setSortMode] = useState<"MOST_BAD" | "A_Z">("MOST_BAD");
+  const [globalRowFilter] = useState<"ALL" | "GOOD" | "BAD">("ALL");
+  const [sectionScope] = useState<"ALL" | "WITH_BAD" | "WITH_DATA">("ALL");
+  const [query] = useState("");
+  const [sortMode] = useState<"MOST_BAD" | "A_Z">("MOST_BAD");
 
 
   const [filters, setFilters] = useState<Record<string, "ALL" | "GOOD" | "BAD">>(() => {
