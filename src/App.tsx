@@ -244,8 +244,7 @@ export default function App() {
             <div style={{ marginTop: 6, opacity: 0.85, fontSize: 13 }}>
               {filename ? (
                 <span>
-                  Loaded: <b>{filename}</b> · Sections w/ data: <b>{totals.sectionsWithData}</b> · Sections w/ bad:{" "}
-                  <b>{totals.sectionsWithBad}</b>
+                  Loaded: <b>{filename}</b> 
                 </span>
               ) : (
                 <span>Upload your CSV export to begin.</span>
@@ -293,97 +292,12 @@ export default function App() {
 
           </div>
 
-          <div style={{ flex: "2 1 420px", display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
-            <input
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search stats (title / column)…"
-              style={{
-                flex: "1 1 280px",
-                padding: "10px 12px",
-                borderRadius: 12,
-                border: "1px solid rgba(255,255,255,0.18)",
-                background: "rgba(255,255,255,0.05)",
-                color: "rgba(255,255,255,0.92)",
-                outline: "none",
-                fontWeight: 700,
-              }}
-              disabled={!rawRows.length}
-            />
-
-            <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
-              <button
-                type="button"
-                style={pillStyle(sectionScope === "ALL")}
-                onClick={() => setSectionScope("ALL")}
-                disabled={!rawRows.length}
-              >
-                All sections
-              </button>
-              <button
-                type="button"
-                style={pillStyle(sectionScope === "WITH_BAD")}
-                onClick={() => setSectionScope("WITH_BAD")}
-                disabled={!rawRows.length}
-              >
-                Only with bad
-              </button>
-              <button
-                type="button"
-                style={pillStyle(sectionScope === "WITH_DATA")}
-                onClick={() => setSectionScope("WITH_DATA")}
-                disabled={!rawRows.length}
-              >
-                Only with data
-              </button>
-            </div>
-          </div>
 
           <div style={{ flex: "1 1 260px", display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-              <button
-                type="button"
-                style={pillStyle(globalRowFilter === "ALL")}
-                onClick={() => setGlobalRowFilter("ALL")}
-                disabled={!rawRows.length}
-              >
-                Show all rows
-              </button>
-              <button
-                type="button"
-                style={pillStyle(globalRowFilter === "GOOD")}
-                onClick={() => setGlobalRowFilter("GOOD")}
-                disabled={!rawRows.length}
-              >
-                Good only
-              </button>
-              <button
-                type="button"
-                style={pillStyle(globalRowFilter === "BAD")}
-                onClick={() => setGlobalRowFilter("BAD")}
-                disabled={!rawRows.length}
-              >
-                Bad only
-              </button>
             </div>
 
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-              <button
-                type="button"
-                style={pillStyle(sortMode === "MOST_BAD")}
-                onClick={() => setSortMode("MOST_BAD")}
-                disabled={!rawRows.length}
-              >
-                Sort: most bad
-              </button>
-              <button
-                type="button"
-                style={pillStyle(sortMode === "A_Z")}
-                onClick={() => setSortMode("A_Z")}
-                disabled={!rawRows.length}
-              >
-                Sort: A–Z
-              </button>
             </div>
           </div>
         </div>
